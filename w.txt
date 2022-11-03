@@ -1,0 +1,139 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        Student[] studentArray = { 
+                    new Student() { StudentID = 1, StudentName = "John", age = 18 } ,
+                    new Student() { StudentID = 2, StudentName = "Steve",  age = 21 } ,
+                    new Student() { StudentID = 3, StudentName = "Bill",  age = 25 } ,
+                    new Student() { StudentID = 4, StudentName = "Ram" , age = 20 } ,
+                    new Student() { StudentID = 5, StudentName = "Ron" , age = 31 } ,
+                    new Student() { StudentID = 6, StudentName = "Chris",  age = 17 } ,
+                    new Student() { StudentID = 7, StudentName = "Rob",age = 19  } ,
+                };
+
+        // Use LINQ to find teenager students
+        Student[] teenAgerStudents = studentArray.Where(s => s.age > 12 && s.age < 20).ToArray();
+       
+        // Use LINQ to find first student whose name is Bill 
+        Student bill = studentArray.Where(s => s.StudentName == "Bill").FirstOrDefault();
+        
+        // Use LINQ to find student whose StudentID is 5
+        Student student5 = studentArray.Where(s => s.StudentID == 5).FirstOrDefault();
+    }
+}
+/////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+  
+class GfG{
+      
+static void Main(string[] args)
+{
+      
+    // Creating a list of integer type
+    List<int> data = new List<int>();
+      
+    // Add elements to the list
+    data.Add(2);
+    data.Add(3);
+    data.Add(4);
+    data.Add(5);
+    data.Add(6);
+    data.Add(12);
+    data.Add(11);
+  
+    // Get the index of numbers
+    var indexdata = data.Select((val, indexvalue) => new
+                    { 
+                        Data = val, 
+                        IndexPosition = indexvalue
+                    }).Where(n => n.Data % 2 == 0).Select(
+                    result => new 
+                    { 
+                        Number = result.Data,
+                        IndexPosition = result.IndexPosition 
+                    });
+                      
+    // Display the index and numbers
+    // of the even numbers from the array
+    foreach(var i in indexdata)
+    {
+        Console.WriteLine("Index Value:" + i.IndexPosition + 
+                          " - Even Number: " + i.Number);
+    }
+}
+}
+
+//////////////
+using System;
+using System.Linq;
+using System.Collections.Generic;
+ 
+class LinqExercise5
+{
+    static void Main(string[] args)
+    {
+      string str; 
+
+            Console.Write("\nLINQ : Display the characters and frequency of character from giving string : "); 
+            Console.Write("\n----------------------------------------------------------------------------\n");	
+            Console.Write("Input the string : ");
+            str= Console.ReadLine();
+            Console.Write("\n");
+        
+            var FreQ = from x in str  
+                    group x by x into y  
+                    select y;  
+                Console.Write("The frequency of the characters are :\n");
+                foreach(var ArrEle in FreQ)  
+                    {  
+                    Console.WriteLine("Character "+ArrEle.Key + ": " + ArrEle.Count()+" times");  
+                    }  
+    }
+}///////////////////
+using System;  
+using System.Collections.Generic;  
+using System.Linq;  
+using System.Text;  
+
+
+class LinqExercise11 
+    {  
+        static void Main(string[] args)  
+      {  
+          
+        List<int> templist = new List<int>();
+        templist.Add(5);
+        templist.Add(7);
+        templist.Add(13);
+        templist.Add(24);
+        templist.Add(6);
+        templist.Add(9);
+        templist.Add(8);
+        templist.Add(7);
+
+        Console.Write("\nLINQ : Display top nth  records from the list : "); 
+        Console.Write("\n----------------------------------------------\n");
+        
+           Console.WriteLine("\nThe members of the list are : ");            
+            foreach (var lstnum in templist)  
+            {  
+                Console.WriteLine(lstnum+" ");  
+            }          
+        
+        Console.Write("How many records you want to display ? : ");  
+        int n= Convert.ToInt32(Console.ReadLine()); 
+
+        templist.Sort();
+        templist.Reverse();
+
+        Console.Write("The top {0} records from the list are : \n",n);  
+        foreach (int topn in templist.Take(n))
+            {
+                Console.WriteLine(topn);
+            }
+        }  
+    }
+	
